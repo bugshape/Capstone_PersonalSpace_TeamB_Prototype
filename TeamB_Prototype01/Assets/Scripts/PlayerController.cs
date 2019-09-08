@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myRigidBody = GetComponent<Rigidbody>();
+        myRigidBody = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
