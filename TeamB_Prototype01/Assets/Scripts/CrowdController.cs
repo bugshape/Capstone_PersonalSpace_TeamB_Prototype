@@ -29,8 +29,8 @@ public class CrowdController : MonoBehaviour
             Vector3 direction = newPlayerPos - transform.position;
             direction.y = 0.0f;
             double distance = Mathf.Sqrt(Mathf.Pow((direction.x - newPlayerPos.x), 2) + Mathf.Pow((direction.y - newPlayerPos.y), 2) + Mathf.Pow((direction.z - newPlayerPos.z), 2));
-            Debug.Log("DISTANCE: " + distance);
-            if ((direction != Vector3.zero) && (distance > 4.5))
+            
+            if (direction != Vector3.zero)
             {
 
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(Vector3.right, direction), rotationSpeed * Time.deltaTime);
@@ -39,13 +39,21 @@ public class CrowdController : MonoBehaviour
             }
             else
             {
+                Debug.Log("DISTANCE: " + distance);
                 
-                SceneManager.LoadScene(0);
             }
             prevPlayerPos = newPlayerPos;
             
         }
         
         
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "Player")
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
